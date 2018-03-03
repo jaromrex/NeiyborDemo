@@ -15,10 +15,10 @@ import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder> {
 
-    List<Data> list = Collections.emptyList();
+    List<Listing> list = Collections.emptyList();
     Context context;
 
-    public RecyclerViewAdapter(List<Data> list, Context context) {
+    public RecyclerViewAdapter(List<Listing> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -36,9 +36,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
 
         //Use the provided View Holder on the onCreateViewHolder method to populate the current row on the RecyclerView
-        holder.title.setText(list.get(position).title);
-        holder.description.setText(list.get(position).description);
-        holder.imageView.setImageResource(list.get(position).imageId);
+        holder.title.setText(list.get(position).getListingName());
+        holder.description.setText(list.get(position).getDescription());
+        holder.imageView.setImageBitmap(list.get(position).getPhoto());
 
         //animate(holder);
 
@@ -56,14 +56,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder> {
     }
 
     // Insert a new item to the RecyclerView on a predefined position
-    public void insert(int position, Data data) {
-        list.add(position, data);
+    public void insert(int position, Listing listing) {
+        list.add(position, listing);
         notifyItemInserted(position);
     }
 
     // Remove a RecyclerView item containing a specified Data object
-    public void remove(Data data) {
-        int position = list.indexOf(data);
+    public void remove(Listing listing) {
+        int position = list.indexOf(listing);
         list.remove(position);
         notifyItemRemoved(position);
     }

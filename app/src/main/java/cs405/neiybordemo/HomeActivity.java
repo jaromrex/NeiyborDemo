@@ -1,6 +1,9 @@
 package cs405.neiybordemo;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -16,18 +19,57 @@ import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
-    public List<Data> fill_with_data() {
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+    Bitmap testBitmap = null;
 
-        List<Data> data = new ArrayList<>();
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
 
-        data.add(new Data("Batman vs Superman", "Following the destruction of Metropolis, Batman embarks on a personal vendetta against Superman ", R.drawable.ic_action_movie));
-        data.add(new Data("X-Men: Apocalypse", "X-Men: Apocalypse is an upcoming American superhero film based on the X-Men characters that appear in Marvel Comics ", R.drawable.ic_action_movie));
-        data.add(new Data("Captain America: Civil War", "A feud between Captain America and Iron Man leaves the Avengers in turmoil.  ", R.drawable.ic_action_movie));
-        data.add(new Data("Kung Fu Panda 3", "After reuniting with his long-lost father, Po  must train a village of pandas", R.drawable.ic_action_movie));
-        data.add(new Data("Warcraft", "Fleeing their dying home to colonize another, fearsome orc warriors invade the peaceful realm of Azeroth. ", R.drawable.ic_action_movie));
-        data.add(new Data("Alice in Wonderland", "Alice in Wonderland: Through the Looking Glass ", R.drawable.ic_action_movie));
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            testBitmap = (Bitmap) extras.get("data");
+            List<Listing> listings = fill_with_data();
+            RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+            RecyclerViewAdapter adapter = new RecyclerViewAdapter(listings, getApplication());
+            recyclerView.setAdapter(adapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        }
+    }
 
-        return data;
+    public List<Listing> fill_with_data() {
+
+        List<Listing> listings = new ArrayList<>();
+
+        Listing listing = new Listing();
+        listing.setListingName("Garage Storage");
+        listing.setSpaceType(SpaceType.Garage);
+        listing.setAvailabilityType(AvailabilityType.AnyTime);
+        listing.setDescription("Extra Space in half of garage");
+        listing.setLength(20);
+        listing.setWidth(20);
+        listing.setMonthlyPrice(120);
+        listing.setPhoto(testBitmap);
+        listings.add(listing);
+        listings.add(listing);
+        listings.add(listing);
+        listings.add(listing);
+        listings.add(listing);
+        listings.add(listing);
+        listings.add(listing);
+        listings.add(listing);
+        listings.add(listing);
+        listings.add(listing);
+        listings.add(listing);
+        listings.add(listing);
+        listings.add(listing);
+
+        return listings;
     }
 
     @Override
@@ -36,11 +78,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("My Spaces");
-        List<Data> data = fill_with_data();
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(data, getApplication());
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        dispatchTakePictureIntent();
     }
 
 

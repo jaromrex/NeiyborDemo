@@ -1,6 +1,8 @@
 package cs405.neiybordemo;
 
+import android.graphics.Bitmap;
 import android.location.Address;
+import android.widget.ImageView;
 
 /**
  * Created by Donny on 3/2/2018.
@@ -20,6 +22,8 @@ public class Listing {
     private String description;
     //address
     private Address listAddress;
+    //photo of storage space
+    private Bitmap photo;
 
     //features
     private boolean hasClimateControl;
@@ -38,6 +42,14 @@ public class Listing {
 
     public Listing(){
 
+    }
+
+    public Bitmap getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(Bitmap photo) {
+        this.photo = photo;
     }
 
     public String getListingID() {
