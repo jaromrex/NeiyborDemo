@@ -24,4 +24,28 @@ public class UserSingleton {
         }
         return instance;
     }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public ArrayList<Listing> getUserListings() {
+        return userListings;
+    }
+
+    public void setUserListings(ArrayList<Listing> userListings) {
+        this.userListings = userListings;
+    }
 }
