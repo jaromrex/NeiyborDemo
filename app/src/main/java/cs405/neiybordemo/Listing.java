@@ -15,8 +15,7 @@ public class Listing {
     //garage, basement, bedroom, rv pad, or other
     private SpaceType spaceType;
     //availability time
-
-
+    private AvailabilityType availabilityType;
     //text description
     private String description;
     //address
@@ -34,7 +33,6 @@ public class Listing {
     private int length;
     private int width;
     private int monthlyPrice;
-
 
     //photos
 
