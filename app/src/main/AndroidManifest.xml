@@ -31,6 +31,10 @@
             android:label="Edit Listing">
 
         </activity>
+        <activity
+            android:name=".CreateListingActivity">
+
+        </activity>
 
     </application>
 
