@@ -34,6 +34,10 @@
             android:name=".CreateListingActivity">
 
         </activity>
+        <activity
+            android:name=".CreateListingActivity">
+
+        </activity>
 
     </application>
 
