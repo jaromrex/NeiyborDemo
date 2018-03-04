@@ -27,8 +27,11 @@
 
         </activity>
         <activity
-            android:name=".EditListingActivity"
-            android:label="Edit Listing">
+            android:name=".EditListingActivity">
+
+        </activity>
+        <activity
+            android:name=".CreateListingActivity">
 
         </activity>
 
