@@ -11,7 +11,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Jarom on 3/2/18.
@@ -46,8 +45,6 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("My Spaces");
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(UserSingleton.Instance().getUserListings(), getApplication());
         recyclerView.setAdapter(adapter);
