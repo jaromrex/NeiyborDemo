@@ -34,42 +34,12 @@ public class HomeActivity extends AppCompatActivity {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             testBitmap = (Bitmap) extras.get("data");
-            List<Listing> listings = fill_with_data();
+            ArrayList<Listing> listings = UserSingleton.Instance().getUserListings();
             RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
             RecyclerViewAdapter adapter = new RecyclerViewAdapter(listings, getApplication());
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
         }
-    }
-
-    public List<Listing> fill_with_data() {
-
-        List<Listing> listings = new ArrayList<>();
-
-        Listing listing = new Listing();
-        listing.setListingName("Garage Storage");
-        listing.setSpaceType(SpaceType.Garage);
-        listing.setAvailabilityType(AvailabilityType.AnyTime);
-        listing.setDescription("Extra Space in half of garage");
-        listing.setLength(20);
-        listing.setWidth(20);
-        listing.setMonthlyPrice(120);
-        listing.setPhoto(testBitmap);
-        listings.add(listing);
-        listings.add(listing);
-        listings.add(listing);
-        listings.add(listing);
-        listings.add(listing);
-        listings.add(listing);
-        listings.add(listing);
-        listings.add(listing);
-        listings.add(listing);
-        listings.add(listing);
-        listings.add(listing);
-        listings.add(listing);
-        listings.add(listing);
-
-        return listings;
     }
 
     @Override
@@ -78,10 +48,11 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("My Spaces");
-        dispatchTakePictureIntent();
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(UserSingleton.Instance().getUserListings(), getApplication());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
-
-
 
 
 }

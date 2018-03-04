@@ -15,7 +15,9 @@ public class UserSingleton {
     private ArrayList<Listing> userListings;
 
     private UserSingleton(){
-        //initialization stuff here
+        // adds a dummy listing for testing or demoing
+        userListings = new ArrayList<>();
+        userListings.add(Listing.createDummyListing());
     }
 
     public static UserSingleton Instance(){

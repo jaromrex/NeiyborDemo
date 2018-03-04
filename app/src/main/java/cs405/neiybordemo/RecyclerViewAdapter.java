@@ -38,10 +38,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder> {
         //Use the provided View Holder on the onCreateViewHolder method to populate the current row on the RecyclerView
         holder.title.setText(list.get(position).getListingName());
         holder.description.setText(list.get(position).getDescription());
-        holder.imageView.setImageBitmap(list.get(position).getPhoto());
-
-        //animate(holder);
-
+        if(list.get(position).getPhoto() == null) {
+            holder.imageView.setImageResource(list.get(position).getPhotoResource());
+        }
+        else {
+            holder.imageView.setImageBitmap(list.get(position).getPhoto());
+        }
     }
 
     @Override

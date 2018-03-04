@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 import android.location.Address;
 import android.widget.ImageView;
 
+import java.util.Locale;
+
 /**
  * Created by Donny on 3/2/2018.
  */
@@ -23,25 +25,40 @@ public class Listing {
     //address
     private Address listAddress;
     //photo of storage space
-    private Bitmap photo;
+    private Bitmap photo = null;
+    private int photoResource;
 
     //features
-    private boolean hasClimateControl;
-    private boolean hasSmokeFree;
-    private boolean hasSmokeDetectors;
-    private boolean hasPrivateEntrance;
-    private boolean hasLockedArea;
-    private boolean hasPetFree;
+    private boolean hasClimateControl = false;
+    private boolean hasSmokeFree = false;
+    private boolean hasSmokeDetectors = false;
+    private boolean hasPrivateEntrance = false;
+    private boolean hasLockedArea = false;
+    private boolean hasPetFree = false;
 
     //sizing
     private int length;
     private int width;
     private int monthlyPrice;
 
-    //photos
+    static public Listing createDummyListing() {
+        Listing listing = new Listing();
+        listing.setListingID("dummy");
+        listing.setListingName("Garage Storage");
+        listing.setSpaceType(SpaceType.Garage);
+        listing.setAvailabilityType(AvailabilityType.AnyTime);
+        listing.setDescription("Extra Space in half of garage");
+        listing.setListAddress(new Address(new Locale("en", "US")));
+        listing.setHasPrivateEntrance(true);
+        listing.setHasPetFree(true);
+        listing.setLength(20);
+        listing.setWidth(20);
+        listing.setMonthlyPrice(120);
+        return listing;
+    }
 
     public Listing(){
-
+        photoResource = R.mipmap.ic_launcher_logo;
     }
 
     public Bitmap getPhoto() {
@@ -50,6 +67,14 @@ public class Listing {
 
     public void setPhoto(Bitmap photo) {
         this.photo = photo;
+    }
+
+    public int getPhotoResource() {
+        return photoResource;
+    }
+
+    public void setPhotoResource(int photoResource) {
+        this.photoResource = photoResource;
     }
 
     public String getListingID() {
