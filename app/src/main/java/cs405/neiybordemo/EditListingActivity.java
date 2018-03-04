@@ -15,8 +15,8 @@ public class EditListingActivity extends ListActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Edit");
+//        ActionBar actionBar = getSupportActionBar();
+//        actionBar.setTitle("Edit");
 
     }
 }
