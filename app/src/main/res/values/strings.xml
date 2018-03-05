@@ -13,7 +13,8 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-	
+
+
 	<string name="next">Next</string>
     <string name="prev">Previous</string>
     <string name="finish_listing">Submit Listing</string>
@@ -41,9 +42,10 @@
     <string name="label_listing_name">Listing Name</string>
     <string name="hint_listing_name">Name your space</string>
     <string name="label_listing_description">Description</string>
-    <string name="hint_listing_description">tell us about the space...</string>
+    <string name="hint_listing_description">Tell us about the space...</string>
 
-    <string name="submit_confirm_message">Place the order with the internet? You will receive an email
+    <string name="submit_confirm_message">Post this listing? You will receive an email
         confirmation.</string>
-    <string name="submit_confirm_button">Place order</string>
+    <string name="submit_confirm_button">Create Listing</string>
+    <string name="cancel">Cancel</string>
 </resources>

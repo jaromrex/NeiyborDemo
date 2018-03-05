@@ -2,6 +2,8 @@ package cs405.neiybordemo;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -9,6 +11,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,10 +54,17 @@ public class CreateListingActivity extends FragmentActivity implements
     public List<Page> mCurrentPageSequence;
     private StepPagerStrip mStepPagerStrip;
 
+
+    private void finishHim(){
+        this.finish();
+    }
+
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_listing);
+
+        //DialogFragment dg = null;
 
         if (savedInstanceState != null) {
             createListingModel.load(savedInstanceState.getBundle("model"));
@@ -97,14 +107,29 @@ public class CreateListingActivity extends FragmentActivity implements
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("createlistingactivity", "setonclicklistener");
                 if (mPager.getCurrentItem() == mCurrentPageSequence.size()) {
-                    DialogFragment dg = new DialogFragment() {
+                    final DialogFragment dg = new DialogFragment() {
                         @Override
                         public Dialog onCreateDialog(Bundle savedInstanceState) {
                             return new AlertDialog.Builder(getActivity())
                                     .setMessage(R.string.submit_confirm_message)
-                                    .setPositiveButton(R.string.submit_confirm_button, null)
-                                    .setNegativeButton(android.R.string.cancel, null)
+                                    .setPositiveButton(R.string.submit_confirm_button, new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            //pull our info and save a thing
+                                            //go back to the main activity
+                                            Log.d("createlisting", "onclick listener for confirm");
+                                            //dg.getActivity().finish();
+                                        }
+                                    })
+                                    .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            Log.d("createlisting", "onclick listener for cancel");
+                                            //dg.dismiss();
+                                        }
+                                    })
                                     .create();
                         }
                     };
