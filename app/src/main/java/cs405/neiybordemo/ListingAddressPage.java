@@ -15,8 +15,10 @@ import android.text.TextUtils;
 
 public class ListingAddressPage extends Page {
 
-    public static final String NAME_DATA_KEY = "name";
-    public static final String EMAIL_DATA_KEY = "email";
+    public static final String ADDRESS_DATA_KEY = "address";
+    public static final String CITY_DATA_KEY = "city";
+    public static final String STATE_DATA_KEY = "state";
+    public static final String ZIP_DATA_KEY = "zip";
 
     public ListingAddressPage(ModelCallbacks callbacks, String title) {
         super(callbacks, title);
@@ -30,11 +32,14 @@ public class ListingAddressPage extends Page {
 
     @Override
     public void getReviewItems(ArrayList<ReviewItem> dest) {
-
+        dest.add(new ReviewItem("Listing Address", mData.getString(ADDRESS_DATA_KEY), getKey(), -1));
+        dest.add(new ReviewItem("Listing City", mData.getString(CITY_DATA_KEY), getKey(), -1));
+        dest.add(new ReviewItem("Listing State", mData.getString(STATE_DATA_KEY), getKey(), -1));
+        dest.add(new ReviewItem("Listing Zip", mData.getString(ZIP_DATA_KEY), getKey(), -1));
     }
 
     @Override
     public boolean isCompleted() {
-        return !TextUtils.isEmpty(mData.getString(NAME_DATA_KEY));
+        return !TextUtils.isEmpty(mData.getString(ADDRESS_DATA_KEY));
     }
 }

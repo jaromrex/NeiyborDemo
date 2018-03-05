@@ -15,30 +15,30 @@ import android.widget.TextView;
 import com.tech.freak.wizardpager.ui.PageFragmentCallbacks;
 
 /**
- * Created by Donny on 3/3/2018.
+ * Created by Donny on 3/4/2018.
  */
 
-public class ListingAddressFragment extends Fragment {
+public class ListingDescriptionFragment extends Fragment {
+
     private static final String ARG_KEY = "key";
 
     private PageFragmentCallbacks mCallbacks;
     private String mKey;
-    private ListingAddressPage mPage;
-    private TextView mAddressView;
-    private TextView mCityView;
-    private TextView mStateView;
-    private TextView mZipView;
+    private ListingDescriptionPage mPage;
+    private TextView mNameView;
+    private TextView mDescriptionView;
 
-    public static ListingAddressFragment create(String key) {
+    public ListingDescriptionFragment(){
+
+    }
+
+    public static ListingDescriptionFragment create(String key) {
         Bundle args = new Bundle();
         args.putString(ARG_KEY, key);
 
-        ListingAddressFragment fragment = new ListingAddressFragment();
+        ListingDescriptionFragment fragment = new ListingDescriptionFragment();
         fragment.setArguments(args);
         return fragment;
-    }
-
-    public ListingAddressFragment() {
     }
 
     @Override
@@ -47,26 +47,20 @@ public class ListingAddressFragment extends Fragment {
 
         Bundle args = getArguments();
         mKey = args.getString(ARG_KEY);
-        mPage = (ListingAddressPage) mCallbacks.onGetPage(mKey);
+        mPage = (ListingDescriptionPage) mCallbacks.onGetPage(mKey);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_page_listing_address, container, false);
+                             Bundle savedInstanceState){
+        View rootView = inflater.inflate(R.layout.fragment_page_listing_description, container, false);
         ((TextView) rootView.findViewById(android.R.id.title)).setText(mPage.getTitle());
 
-        mAddressView = ((TextView) rootView.findViewById(R.id.listing_address));
-        mAddressView.setText(mPage.getData().getString(ListingAddressPage.ADDRESS_DATA_KEY));
+        mNameView = rootView.findViewById(R.id.listing_name);
+        mNameView.setText(mPage.getData().getString(ListingDescriptionPage.NAME_DATA_KEY));
 
-        mCityView = ((TextView) rootView.findViewById(R.id.listing_city));
-        mCityView.setText(mPage.getData().getString(ListingAddressPage.CITY_DATA_KEY));
-
-        mStateView = ((TextView) rootView.findViewById(R.id.listing_state));
-        mStateView.setText(mPage.getData().getString(ListingAddressPage.STATE_DATA_KEY));
-
-        mZipView = ((TextView) rootView.findViewById(R.id.listing_zip));
-        mZipView.setText(mPage.getData().getString(ListingAddressPage.ZIP_DATA_KEY));
+        mDescriptionView = rootView.findViewById(R.id.listing_description);
+        mNameView.setText(mPage.getData().getString(ListingDescriptionPage.DESCRIPTION_DATA_KEY));
 
         return rootView;
     }
@@ -92,7 +86,7 @@ public class ListingAddressFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mAddressView.addTextChangedListener(new TextWatcher() {
+        mNameView.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1,
                                           int i2) {
@@ -104,13 +98,13 @@ public class ListingAddressFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                mPage.getData().putString(ListingAddressPage.ADDRESS_DATA_KEY,
+                mPage.getData().putString(ListingDescriptionPage.NAME_DATA_KEY,
                         (editable != null) ? editable.toString() : null);
                 mPage.notifyDataChanged();
             }
         });
 
-        mCityView.addTextChangedListener(new TextWatcher() {
+        mDescriptionView.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1,
                                           int i2) {
@@ -122,43 +116,7 @@ public class ListingAddressFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                mPage.getData().putString(ListingAddressPage.CITY_DATA_KEY,
-                        (editable != null) ? editable.toString() : null);
-                mPage.notifyDataChanged();
-            }
-        });
-
-        mStateView.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1,
-                                          int i2) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                mPage.getData().putString(ListingAddressPage.STATE_DATA_KEY,
-                        (editable != null) ? editable.toString() : null);
-                mPage.notifyDataChanged();
-            }
-        });
-
-        mZipView.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1,
-                                          int i2) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                mPage.getData().putString(ListingAddressPage.ZIP_DATA_KEY,
+                mPage.getData().putString(ListingDescriptionPage.DESCRIPTION_DATA_KEY,
                         (editable != null) ? editable.toString() : null);
                 mPage.notifyDataChanged();
             }
@@ -171,7 +129,7 @@ public class ListingAddressFragment extends Fragment {
 
         // In a future update to the support library, this should override setUserVisibleHint
         // instead of setMenuVisibility.
-        if (mAddressView != null) {
+        if (mDescriptionView != null) {
             InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(
                     Context.INPUT_METHOD_SERVICE);
             if (!menuVisible) {
@@ -179,4 +137,5 @@ public class ListingAddressFragment extends Fragment {
             }
         }
     }
+
 }
