@@ -24,6 +24,23 @@
     <string name="hint_your_name">e.g. Larry</string>
     <string name="hint_your_email">Optional</string>
 
+    <!-- Listing Address strings -->
+    <!-- Street address -->
+    <string name="label_listing_address">Street Address</string>
+    <string name="hint_listing_address">123 Main Street</string>
+    <string name="label_listing_city">City</string>
+    <string name="hint_listing_city">Provo</string>
+    <string name="label_listing_state">State</string>
+    <string name="hint_listing_state">UT</string>
+    <string name="label_listing_zip">Zip</string>
+    <string name="hint_listing_zip">12345</string>
+
+    <!-- listing description -->
+    <string name="label_listing_name">Listing Name</string>
+    <string name="hint_listing_name">Name your space</string>
+    <string name="label_listing_description">Description</string>
+    <string name="hint_listing_description">tell us about the space...</string>
+
     <string name="submit_confirm_message">Place the order with the internet? You will receive an email
         confirmation.</string>
     <string name="submit_confirm_button">Place order</string>

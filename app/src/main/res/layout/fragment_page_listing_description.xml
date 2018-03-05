@@ -31,45 +31,29 @@
             android:orientation="vertical">
 
             <TextView style="@style/WizardFormLabel"
-                android:text="@string/label_listing_address" />
+                android:text="@string/label_listing_name" />
 
-            <EditText android:id="@+id/listing_address"
+            <EditText android:id="@+id/listing_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:saveEnabled="false"
                 android:inputType="textCapWords"
-                android:hint="@string/hint_listing_address"
+                android:hint="@string/hint_listing_name"
                 android:layout_marginBottom="16dp" />
 
             <TextView style="@style/WizardFormLabel"
-                android:text="@string/label_listing_city" />
+                android:text="@string/label_listing_description" />
 
-            <EditText android:id="@+id/listing_city"
+            <EditText android:id="@+id/listing_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:saveEnabled="false"
-                android:inputType="textPostalAddress"
-                android:hint="@string/hint_listing_city" />
+                android:inputType="textCapSentences|textMultiLine"
+                android:hint="@string/hint_listing_description"
+                android:minLines="2"
+                android:maxLength="1000"
+                />
 
-            <TextView style="@style/WizardFormLabel"
-                android:text="@string/label_listing_state" />
-
-            <EditText android:id="@+id/listing_state"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:saveEnabled="false"
-                android:inputType="text"
-                android:hint="@string/hint_listing_state" />
-
-            <TextView style="@style/WizardFormLabel"
-                android:text="@string/label_listing_zip" />
-
-            <EditText android:id="@+id/listing_zip"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:saveEnabled="false"
-                android:inputType="number"
-                android:hint="@string/hint_listing_zip" />
 
         </LinearLayout>
     </ScrollView>

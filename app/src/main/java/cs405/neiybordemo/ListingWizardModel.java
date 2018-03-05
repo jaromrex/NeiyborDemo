@@ -20,6 +20,12 @@ public class ListingWizardModel extends AbstractWizardModel {
     @Override
     protected PageList onNewRootPageList() {
         return new PageList(
+                new ListingDescriptionPage(this, "Description")
+                    .setRequired(true),
+
+                new ListingAddressPage(this, "Address")
+                    .setRequired(true),
+
                 new SingleFixedChoicePage(this, "Type of space")
                     .setChoices("Basement", "Bedroom", "Garage", "RV Pad", "Other")
                     .setRequired(true),
@@ -28,14 +34,11 @@ public class ListingWizardModel extends AbstractWizardModel {
                     .setChoices("24/7", "Business Hours", "By Appointment Only")
                     .setRequired(true),
 
-                new SingleFixedChoicePage(this, "description")
-                    .setChoices("yes", "no")
-                        .setRequired(true),
-
                 new MultipleFixedChoicePage(this, "Features")
-                    .setChoices("Climate Control", "Smoke free", "Smoke detectors", "Private entrance", "Locked area", "pet free")
+                    .setChoices("Climate Control", "Smoke free", "Smoke detectors", "Private entrance", "Locked area", "Pet free")
                     .setRequired(false)
 
+                //pictures
         );
     }
 }
