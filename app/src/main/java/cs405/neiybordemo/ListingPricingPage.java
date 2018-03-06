@@ -30,9 +30,9 @@ public class ListingPricingPage extends Page {
 
     @Override
     public void getReviewItems(ArrayList<ReviewItem> dest) {
-        dest.add(new ReviewItem("Space Length", mData.getString(LENGTH_DATA_KEY), getKey(), -1));
-        dest.add(new ReviewItem("Space Width", mData.getString(WIDTH_DATA_KEY), getKey(), -1));
-        dest.add(new ReviewItem("Space Price", mData.getString(PRICE_DATA_KEY), getKey(), -1));
+        String str = mData.getString(LENGTH_DATA_KEY) + "  X  " + mData.getString(WIDTH_DATA_KEY);
+        dest.add(new ReviewItem("Size", str, getKey(), -1));
+        dest.add(new ReviewItem("Price", mData.getString(PRICE_DATA_KEY), getKey(), -1));
     }
 
     @Override

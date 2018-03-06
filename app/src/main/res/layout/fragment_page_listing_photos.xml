@@ -31,7 +31,7 @@
             android:orientation="vertical">
 
             <TextView style="@style/WizardFormLabel"
-                android:text="@string/label_listing_name" />
+                android:text="POOPYPOOPS" />
 
             <EditText android:id="@+id/listing_name"
                 android:layout_width="match_parent"
@@ -40,19 +40,6 @@
                 android:inputType="textCapWords"
                 android:hint="@string/hint_listing_name"
                 android:layout_marginBottom="16dp" />
-
-            <TextView style="@style/WizardFormLabel"
-                android:text="@string/label_listing_description" />
-
-            <EditText android:id="@+id/listing_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:saveEnabled="false"
-                android:inputType="textCapSentences|textMultiLine"
-                android:hint="@string/hint_listing_description"
-                android:minLines="2"
-                android:maxLength="1000"
-                />
 
 
         </LinearLayout>

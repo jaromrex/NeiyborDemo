@@ -52,7 +52,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="@string/prev" />
+            android:text="@string/prev"/>
 
         <Button
             style="?android:attr/buttonBarButtonStyle"
@@ -61,7 +61,8 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="@string/next" />
+            android:text="@string/next"
+            android:textAllCaps="false"/>
 
     </LinearLayout>
 

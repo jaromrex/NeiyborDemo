@@ -4,18 +4,24 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.tech.freak.wizardpager.*;
 import com.tech.freak.wizardpager.model.AbstractWizardModel;
@@ -58,7 +64,6 @@ public class CreateListingActivity extends FragmentActivity implements
     public List<Page> mCurrentPageSequence;
     private StepPagerStrip mStepPagerStrip;
 
-
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +91,7 @@ public class CreateListingActivity extends FragmentActivity implements
 
         mNextButton = (Button) findViewById(R.id.next_button);
         mPrevButton = (Button) findViewById(R.id.prev_button);
+        mPrevButton.setTextColor(Color.GRAY);
 
         mPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
@@ -105,30 +111,24 @@ public class CreateListingActivity extends FragmentActivity implements
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("CreateListingAct NB OCL", "beginning of onclick function");
                 if (mPager.getCurrentItem() == mCurrentPageSequence.size()) {
-                    Log.d("CreateListingAct NB OCL", "this is where i'd build my listing object if i had one");
                     Listing theListing = new Listing();
                     ArrayList<ReviewItem> reviewItems = new ArrayList<ReviewItem>();
                     for (Page page : mCurrentPageSequence) {
                         page.getReviewItems(reviewItems);
                     }
                     for (ReviewItem item : reviewItems){
-                        Log.d("RI weight", Integer.toString(item.getWeight()));
-                        Log.d("RI title", item.getTitle());
-                        Log.d("RI disp val", item.getDisplayValue());
-                        Log.d("RI page key", item.getPageKey());
                         /*
                         case "" : theListing.(item.getDisplayValue());
                                 break;
                          */
 
                         switch (item.getTitle()){
-                            case "Lisiting Name": theListing.setListingName(item.getDisplayValue());
+                            case "Space Name": theListing.setListingName(item.getDisplayValue());
                                 break;
-                            case "Lisiting Description" : theListing.setDescription(item.getDisplayValue());
+                            case "Description" : theListing.setDescription(item.getDisplayValue());
                                 break;
-                            case "Listing Address" : theListing.setListAddress(item.getDisplayValue());
+                            case "Address" : theListing.setListAddress(item.getDisplayValue());
                                 break;
                             case "Listing City" : theListing.setListCity(item.getDisplayValue());
                                 break;
@@ -175,51 +175,24 @@ public class CreateListingActivity extends FragmentActivity implements
                                 }
                                 break;
                             //length
-                            case "Space Length" : theListing.setLength(Integer.parseInt(item.getDisplayValue()));
+                            case "Length" : theListing.setLength(Integer.parseInt(item.getDisplayValue()));
                                 break;
                             //width
-                            case "Space Width" : theListing.setWidth(Integer.parseInt(item.getDisplayValue()));
+                            case "Width" : theListing.setWidth(Integer.parseInt(item.getDisplayValue()));
+                                break;
+                            // size
+                            case "Size" : theListing.setSize(item.getDisplayValue());
                                 break;
                             //monthly price
-                            case "Space Price" : theListing.setMonthlyPrice(Integer.parseInt(item.getDisplayValue()));
+                            case "Price" : theListing.setMonthlyPrice(Integer.parseInt(item.getDisplayValue()));
                                 break;
 
                             default:break;
                         }
                     }
-                    UserSingleton singleton = UserSingleton.Instance();
-                    singleton.addListing(theListing);
+                    UserSingleton.Instance().addListing(theListing);
+                    beginPhotosActivity();
                     finish();
-                    /*
-                    Log.d("createlistingactivity", "inside mpager if statement");
-                    DialogFragment dg = new DialogFragment() {
-                        @Override
-                        public Dialog onCreateDialog(Bundle savedInstanceState) {
-                            return new AlertDialog.Builder(getActivity())
-                                    .setMessage(R.string.submit_confirm_message)
-                                    .setPositiveButton(R.string.submit_confirm_button, new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-                                            //pull our info and save a thing
-                                            //go back to the main activity
-                                            Log.d("createlisting", "onclick listener for confirm");
-                                            //dg.getActivity().finish();
-                                        }
-                                    })
-                                    .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-                                            Log.d("createlisting", "onclick listener for cancel");
-                                            //dg.dismiss();
-                                        }
-                                    })
-                                    .create();
-                        }
-                    };
-                    Log.d("createlistingactivity", "dg.show:getSupportFragmentManager()");
-                    //dg.show(getSupportFragmentManager(), "place_order_dialog");
-                    Log.d("createlistingactivity", "after dg.show:getSupportFragmentManager()");
-                    */
                 }
                 else {
                     if (mEditingAfterReview) {
@@ -240,6 +213,11 @@ public class CreateListingActivity extends FragmentActivity implements
 
         onPageTreeChanged();
         updateBottomBar();
+    }
+
+    public void beginPhotosActivity() {
+        Intent intent = new Intent(this, PhotosActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -307,7 +285,7 @@ public class CreateListingActivity extends FragmentActivity implements
         int position = mPager.getCurrentItem();
         if (position == mCurrentPageSequence.size()) {
             mNextButton.setText(R.string.finish_listing);
-            mNextButton.setBackgroundResource(R.drawable.finish_background);
+            mNextButton.setBackgroundColor(Color.argb(255, 0, 125, 255));
             mNextButton.setTextAppearance(this, R.style.TextAppearanceFinish);
         } else {
             mNextButton.setText(mEditingAfterReview

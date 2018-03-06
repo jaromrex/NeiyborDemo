@@ -29,6 +29,7 @@ public class ListingPhotosPage extends Page {
     @Override
     public void getReviewItems(ArrayList<ReviewItem> dest) {
         //not sure how we will handle this
+        dest.add(new ReviewItem("Lisiting Name", mData.getString(NAME_DATA_KEY), getKey(), -1));
     }
 
     @Override

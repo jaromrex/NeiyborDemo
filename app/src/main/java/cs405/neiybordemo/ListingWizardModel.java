@@ -40,8 +40,6 @@ public class ListingWizardModel extends AbstractWizardModel {
 
                 new ListingPricingPage(this, "Pricing")
                     .setRequired(true)
-
-                //pictures
         );
     }
 }

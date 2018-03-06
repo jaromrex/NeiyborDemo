@@ -29,8 +29,8 @@ class ListingDescriptionPage extends Page{
 
     @Override
     public void getReviewItems(ArrayList<ReviewItem> dest) {
-        dest.add(new ReviewItem("Lisiting Name", mData.getString(NAME_DATA_KEY), getKey(), -1));
-        dest.add(new ReviewItem("Lisiting Description", mData.getString(DESCRIPTION_DATA_KEY), getKey(), -1));
+        dest.add(new ReviewItem("Space Name", mData.getString(NAME_DATA_KEY), getKey(), -1));
+        dest.add(new ReviewItem("Description", mData.getString(DESCRIPTION_DATA_KEY), getKey(), -1));
     }
 
     @Override

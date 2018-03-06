@@ -32,10 +32,9 @@ public class ListingAddressPage extends Page {
 
     @Override
     public void getReviewItems(ArrayList<ReviewItem> dest) {
-        dest.add(new ReviewItem("Listing Address", mData.getString(ADDRESS_DATA_KEY), getKey(), -1));
-        dest.add(new ReviewItem("Listing City", mData.getString(CITY_DATA_KEY), getKey(), -1));
-        dest.add(new ReviewItem("Listing State", mData.getString(STATE_DATA_KEY), getKey(), -1));
-        dest.add(new ReviewItem("Listing Zip", mData.getString(ZIP_DATA_KEY), getKey(), -1));
+        String str = mData.getString(ADDRESS_DATA_KEY) + "\n" + mData.getString(CITY_DATA_KEY) + ", " +
+                        mData.getString(STATE_DATA_KEY) + "  " + mData.getString(ZIP_DATA_KEY);
+        dest.add(new ReviewItem("Address", str, getKey(), -1));
     }
 
     @Override

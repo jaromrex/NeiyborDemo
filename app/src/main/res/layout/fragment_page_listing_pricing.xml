@@ -31,25 +31,39 @@
             android:orientation="vertical">
 
             <TextView style="@style/WizardFormLabel"
-                android:text="@string/label_listing_length" />
+                android:text="Space Size:" />
 
-            <EditText android:id="@+id/listing_length"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:saveEnabled="false"
-                android:inputType="number"
-                android:hint="@string/hint_listing_length"
-                android:layout_marginBottom="16dp" />
+                android:orientation="horizontal">
 
-            <TextView style="@style/WizardFormLabel"
-                android:text="@string/label_listing_width" />
+                <EditText android:id="@+id/listing_length"
+                          android:layout_weight="1"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:saveEnabled="false"
+                          android:inputType="number"
+                          android:hint="@string/hint_listing_length"
+                          android:layout_marginBottom="16dp" />
 
-            <EditText android:id="@+id/listing_width"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:saveEnabled="false"
-                android:inputType="number"
-                android:hint="@string/hint_listing_width" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="X"
+                    android:textAlignment="center"
+                    android:textSize="10dp"
+                    android:padding="20dp"/>
+
+                <EditText android:id="@+id/listing_width"
+                          android:layout_weight="1"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:saveEnabled="false"
+                          android:inputType="number"
+                          android:hint="@string/hint_listing_width"/>
+
+            </LinearLayout>
 
             <TextView style="@style/WizardFormLabel"
                 android:text="@string/label_listing_price" />
@@ -59,7 +73,8 @@
                 android:layout_height="wrap_content"
                 android:saveEnabled="false"
                 android:inputType="number"
-                android:hint="@string/hint_listing_price" />
+                android:hint="@string/hint_listing_price"
+                android:text="100"/>
 
 
         </LinearLayout>

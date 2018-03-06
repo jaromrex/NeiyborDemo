@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -25,28 +26,8 @@ import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
-    static final int REQUEST_IMAGE_CAPTURE = 1;
-    Bitmap testBitmap = null;
-
-    private void dispatchTakePictureIntent() {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
-            testBitmap = (Bitmap) extras.get("data");
-            ArrayList<Listing> listings = UserSingleton.Instance().getUserListings();
-            RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-            RecyclerViewAdapter adapter = new RecyclerViewAdapter(listings, getApplication());
-            recyclerView.setAdapter(adapter);
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        }
-    }
+    RecyclerView mRecyclerView;
+    View mImageView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,10 +35,12 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        getSupportActionBar().setTitle("My Spaces");
+        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(UserSingleton.Instance().getUserListings(), getApplication());
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setAdapter(adapter);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mImageView = findViewById(R.id.no_spaces_image);
         if(UserSingleton.Instance().getUserListings().size() == 0) {
             showNoSpaces();
         }
@@ -69,28 +52,25 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        updateSpaceListings();
+        if(UserSingleton.Instance().getUserListings().size() > 0) {
+            showSpaces();
+            updateSpaceListings();
+        }
     }
 
     public void updateSpaceListings() {
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-        List<Listing> userListings = UserSingleton.Instance().getUserListings();
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(UserSingleton.Instance().getUserListings(), getApplication());
-        recyclerView.setAdapter(adapter);
+        mRecyclerView.setAdapter(adapter);
     }
 
     public void showNoSpaces() {
-        View recyclerView = findViewById(R.id.recyclerview);
-        recyclerView.setVisibility(View.GONE);
-        View image = findViewById(R.id.no_spaces_image);
-        image.setVisibility(View.VISIBLE);
+        mRecyclerView.setVisibility(View.GONE);
+        mImageView.setVisibility(View.VISIBLE);
     }
 
     public void showSpaces() {
-        View image = findViewById(R.id.no_spaces_image);
-        image.setVisibility(View.GONE);
-        View recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-        recyclerView.setVisibility(View.VISIBLE);
+        mImageView.setVisibility(View.GONE);
+        mRecyclerView.setVisibility(View.VISIBLE);
     }
 
     @Override

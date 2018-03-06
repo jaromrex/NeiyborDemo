@@ -27,7 +27,6 @@ public class ListingPhotosFragment extends Fragment {
     private ListingPhotosPage mPage;
     //text input boxes
     private TextView mNameView;
-    private TextView mDescriptionView;
 
     public ListingPhotosFragment(){
 
@@ -59,10 +58,7 @@ public class ListingPhotosFragment extends Fragment {
 
         //views, will probably change
         mNameView = rootView.findViewById(R.id.listing_name);
-        mNameView.setText(mPage.getData().getString(ListingDescriptionPage.NAME_DATA_KEY));
-
-        mDescriptionView = rootView.findViewById(R.id.listing_description);
-        mNameView.setText(mPage.getData().getString(ListingDescriptionPage.DESCRIPTION_DATA_KEY));
+        mNameView.setText(mPage.getData().getString(ListingPhotosPage.NAME_DATA_KEY));
 
         return rootView;
     }
@@ -100,25 +96,7 @@ public class ListingPhotosFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                mPage.getData().putString(ListingDescriptionPage.NAME_DATA_KEY,
-                        (editable != null) ? editable.toString() : null);
-                mPage.notifyDataChanged();
-            }
-        });
-
-        mDescriptionView.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1,
-                                          int i2) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                mPage.getData().putString(ListingDescriptionPage.DESCRIPTION_DATA_KEY,
+                mPage.getData().putString(ListingPhotosPage.NAME_DATA_KEY,
                         (editable != null) ? editable.toString() : null);
                 mPage.notifyDataChanged();
             }
@@ -131,7 +109,7 @@ public class ListingPhotosFragment extends Fragment {
 
         // In a future update to the support library, this should override setUserVisibleHint
         // instead of setMenuVisibility.
-        if (mDescriptionView != null) {
+        if (mNameView != null) {
             InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(
                     Context.INPUT_METHOD_SERVICE);
             if (!menuVisible) {

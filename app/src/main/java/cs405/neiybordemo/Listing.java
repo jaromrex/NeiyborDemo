@@ -31,6 +31,8 @@ public class Listing {
     private Bitmap photo = null;
     private int photoResource;
 
+    private String size;
+
     //features
     private boolean hasClimateControl = false;
     private boolean hasSmokeFree = false;
@@ -230,6 +232,14 @@ public class Listing {
 
     public void setListZip(String listZip) {
         this.listZip = listZip;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
     }
 }
 
