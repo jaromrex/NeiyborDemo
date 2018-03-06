@@ -126,7 +126,7 @@ public class CreateListingActivity extends FragmentActivity implements
                         switch (item.getTitle()){
                             case "Lisiting Name": theListing.setListingName(item.getDisplayValue());
                                 break;
-                            case "Description" : theListing.setDescription(item.getDisplayValue());
+                            case "Lisiting Description" : theListing.setDescription(item.getDisplayValue());
                                 break;
                             case "Listing Address" : theListing.setListAddress(item.getDisplayValue());
                                 break;
