@@ -23,7 +23,10 @@ public class Listing {
     //text description
     private String description;
     //address
-    private Address listAddress;
+    private String listAddress;
+    private String listCity;
+    private String listState;
+    private String listZip;
     //photo of storage space
     private Bitmap photo = null;
     private int photoResource;
@@ -48,7 +51,7 @@ public class Listing {
         listing.setSpaceType(SpaceType.Garage);
         listing.setAvailabilityType(AvailabilityType.AnyTime);
         listing.setDescription("Extra Space in half of garage");
-        listing.setListAddress(new Address(new Locale("en", "US")));
+        //listing.setListAddress(new Address(new Locale("en", "US")));
         listing.setHasPrivateEntrance(true);
         listing.setHasPetFree(true);
         listing.setLength(20);
@@ -116,7 +119,7 @@ public class Listing {
     public void setDescription(String description) {
         this.description = description;
     }
-
+    /*
     public Address getListAddress() {
         return listAddress;
     }
@@ -124,7 +127,7 @@ public class Listing {
     public void setListAddress(Address listAddress) {
         this.listAddress = listAddress;
     }
-
+    */
     public boolean isHasClimateControl() {
         return hasClimateControl;
     }
@@ -195,6 +198,38 @@ public class Listing {
 
     public void setMonthlyPrice(int monthlyPrice) {
         this.monthlyPrice = monthlyPrice;
+    }
+
+    public String getListAddress() {
+        return listAddress;
+    }
+
+    public void setListAddress(String listAddress) {
+        this.listAddress = listAddress;
+    }
+
+    public String getListCity() {
+        return listCity;
+    }
+
+    public void setListCity(String listCity) {
+        this.listCity = listCity;
+    }
+
+    public String getListState() {
+        return listState;
+    }
+
+    public void setListState(String listState) {
+        this.listState = listState;
+    }
+
+    public String getListZip() {
+        return listZip;
+    }
+
+    public void setListZip(String listZip) {
+        this.listZip = listZip;
     }
 }
 

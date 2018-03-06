@@ -30,6 +30,10 @@ public class UserSingleton {
         userListings.add(Listing.createDummyListing());
     }
 
+    public void addListing(Listing newListing){
+        userListings.add(newListing);
+    }
+
     public String getUserID() {
         return userID;
     }
