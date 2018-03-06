@@ -44,6 +44,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder> {
         else {
             holder.imageView.setImageBitmap(list.get(position).getPhoto());
         }
+        holder.size.setText(list.get(position).getSize());
+        holder.price.setText(Integer.toString(list.get(position).getMonthlyPrice()));
+        holder.title.setText("Poop");
     }
 
     @Override

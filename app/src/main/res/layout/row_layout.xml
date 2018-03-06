@@ -16,7 +16,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/imageView"
@@ -42,6 +42,31 @@
             android:layout_below="@+id/title"
             android:layout_toRightOf="@+id/imageView"
             android:text="Description" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:paddingRight="15dp"
+            android:layout_toRightOf="@+id/imageView"
+            android:layout_below="@+id/description">
+
+            <TextView
+                android:id="@+id/my_space_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:text="$80"/>
+
+            <TextView
+                android:id="@+id/space_size"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="5 X 10"/>
+
+        </LinearLayout>
 
     </RelativeLayout>
 
