@@ -17,7 +17,6 @@ public class UserSingleton {
     private UserSingleton(){
         // adds a dummy listing for testing or demoing
         userListings = new ArrayList<>();
-        userListings.add(Listing.createDummyListing());
     }
 
     public static UserSingleton Instance(){
@@ -25,6 +24,10 @@ public class UserSingleton {
             instance = new UserSingleton();
         }
         return instance;
+    }
+
+    public void setDummyListings() {
+        userListings.add(Listing.createDummyListing());
     }
 
     public void addListing(Listing newListing){

@@ -64,8 +64,6 @@ public class CreateListingActivity extends FragmentActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_listing);
 
-        //DialogFragment dg = null;
-
         if (savedInstanceState != null) {
             createListingModel.load(savedInstanceState.getBundle("model"));
         }
