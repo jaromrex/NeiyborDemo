@@ -12,8 +12,12 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Jarom on 3/2/18.
@@ -54,6 +58,39 @@ public class HomeActivity extends AppCompatActivity {
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(UserSingleton.Instance().getUserListings(), getApplication());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        if(UserSingleton.Instance().getUserListings().size() == 0) {
+            showNoSpaces();
+        }
+        else {
+            showSpaces();
+        }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        updateSpaceListings();
+    }
+
+    public void updateSpaceListings() {
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        List<Listing> userListings = UserSingleton.Instance().getUserListings();
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(UserSingleton.Instance().getUserListings(), getApplication());
+        recyclerView.setAdapter(adapter);
+    }
+
+    public void showNoSpaces() {
+        View recyclerView = findViewById(R.id.recyclerview);
+        recyclerView.setVisibility(View.GONE);
+        View image = findViewById(R.id.no_spaces_image);
+        image.setVisibility(View.VISIBLE);
+    }
+
+    public void showSpaces() {
+        View image = findViewById(R.id.no_spaces_image);
+        image.setVisibility(View.GONE);
+        View recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        recyclerView.setVisibility(View.VISIBLE);
     }
 
     @Override

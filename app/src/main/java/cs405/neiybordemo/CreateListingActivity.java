@@ -64,8 +64,6 @@ public class CreateListingActivity extends FragmentActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_listing);
 
-        //DialogFragment dg = null;
-
         if (savedInstanceState != null) {
             createListingModel.load(savedInstanceState.getBundle("model"));
         }
@@ -107,33 +105,8 @@ public class CreateListingActivity extends FragmentActivity implements
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("createlistingactivity", "setonclicklistener");
                 if (mPager.getCurrentItem() == mCurrentPageSequence.size()) {
-                    final DialogFragment dg = new DialogFragment() {
-                        @Override
-                        public Dialog onCreateDialog(Bundle savedInstanceState) {
-                            return new AlertDialog.Builder(getActivity())
-                                    .setMessage(R.string.submit_confirm_message)
-                                    .setPositiveButton(R.string.submit_confirm_button, new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-                                            //pull our info and save a thing
-                                            //go back to the main activity
-                                            Log.d("createlisting", "onclick listener for confirm");
-                                            //dg.getActivity().finish();
-                                        }
-                                    })
-                                    .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-                                            Log.d("createlisting", "onclick listener for cancel");
-                                            //dg.dismiss();
-                                        }
-                                    })
-                                    .create();
-                        }
-                    };
-                    dg.show(getSupportFragmentManager(), "place_order_dialog");
+                    finish();
                 } else {
                     if (mEditingAfterReview) {
                         mPager.setCurrentItem(mPagerAdapter.getCount() - 1);
