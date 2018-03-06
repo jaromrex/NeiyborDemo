@@ -44,6 +44,14 @@
     <string name="label_listing_description">Description</string>
     <string name="hint_listing_description">Tell us about the space...</string>
 
+    <!-- listing pricing -->
+    <string name="label_listing_length">Length (feet)</string>
+    <string name="hint_listing_length">10</string>
+    <string name="label_listing_width">Width (feet)</string>
+    <string name="hint_listing_width">5</string>
+    <string name="label_listing_price">Price per Month</string>
+    <string name="hint_listing_price">50</string>
+
     <string name="submit_confirm_message">Post this listing? You will receive an email
         confirmation.</string>
     <string name="submit_confirm_button">Create Listing</string>

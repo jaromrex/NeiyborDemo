@@ -36,7 +36,10 @@ public class ListingWizardModel extends AbstractWizardModel {
 
                 new MultipleFixedChoicePage(this, "Features")
                     .setChoices("Climate Control", "Smoke free", "Smoke detectors", "Private entrance", "Locked area", "Pet free")
-                    .setRequired(false)
+                    .setRequired(false),
+
+                new ListingPricingPage(this, "Pricing")
+                    .setRequired(true)
 
                 //pictures
         );

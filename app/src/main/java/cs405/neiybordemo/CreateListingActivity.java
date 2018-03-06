@@ -176,17 +176,16 @@ public class CreateListingActivity extends FragmentActivity implements
                                     theListing.setHasPetFree(true);
                                 }
                                 break;
-                            /*
                             //length
-                            case "" : theListing.(item.getDisplayValue());
+                            case "Space Length" : theListing.setLength(Integer.parseInt(item.getDisplayValue()));
                                 break;
                             //width
-                            case "" : theListing.(item.getDisplayValue());
+                            case "Space Width" : theListing.setWidth(Integer.parseInt(item.getDisplayValue()));
                                 break;
                             //monthly price
-                            case "" : theListing.(item.getDisplayValue());
+                            case "Space Price" : theListing.setMonthlyPrice(Integer.parseInt(item.getDisplayValue()));
                                 break;
-                                */
+
                             default:break;
                         }
                     }
