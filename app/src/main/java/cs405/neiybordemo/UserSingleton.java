@@ -27,6 +27,10 @@ public class UserSingleton {
         return instance;
     }
 
+    public void addListing(Listing newListing){
+        userListings.add(newListing);
+    }
+
     public String getUserID() {
         return userID;
     }
