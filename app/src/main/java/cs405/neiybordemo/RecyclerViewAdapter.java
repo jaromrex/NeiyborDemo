@@ -46,7 +46,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder> {
         }
         holder.size.setText(list.get(position).getSize());
         holder.price.setText(Integer.toString(list.get(position).getMonthlyPrice()));
-        holder.title.setText("Poop");
     }
 
     @Override
